@@ -1,7 +1,7 @@
 #include <Arduino.h>
-#include "RGB_LED.h"
+#include "RGLED.h"
 
-RGB_LED::RGB_LED(uint8_t redPin, uint8_t greenPin, uint8_t bluePin, uint8_t minValue, uint8_t maxValue, uint8_t increment, uint16_t updateSpeed) 
+RGBLED::RGBLED(uint8_t redPin, uint8_t greenPin, uint8_t bluePin, uint8_t minValue, uint8_t maxValue, uint8_t increment, uint16_t updateSpeed) 
 	: redPin_(redPin),
 		greenPin_(greenPin),
 		bluePin_(bluePin),
@@ -15,7 +15,7 @@ RGB_LED::RGB_LED(uint8_t redPin, uint8_t greenPin, uint8_t bluePin, uint8_t minV
 	pinMode(bluePin_, OUTPUT);
 }
 
-void RGB_LED::process() {
+void RGBLED::process() {
 	switch (state_) {
 		case manual:
 			break;
@@ -28,7 +28,7 @@ void RGB_LED::process() {
 	}
 }
 
-void RGB_LED::setCycle(bool toCycle) {
+void RGBLED::setCycle(bool toCycle) {
 	if (toCycle) {
 		state_ = cycle;
 		cycleState_ = blueToViolet;
@@ -40,7 +40,7 @@ void RGB_LED::setCycle(bool toCycle) {
 	}
 }
 
-void RGB_LED::cycleLights() {
+void RGBLED::cycleLights() {
 	switch(cycleState_) {
 		case blueToViolet:
 			// Serial.println("Cycling blueToViolet");
@@ -94,7 +94,7 @@ void RGB_LED::cycleLights() {
 	return;
 }
 
-void RGB_LED::setIntensity(Channel channel, uint8_t channelIntensity) {
+void RGBLED::setIntensity(Channel channel, uint8_t channelIntensity) {
 	switch(channel) {
 		case red:
 			redValue_ = channelIntensity;
@@ -111,7 +111,7 @@ void RGB_LED::setIntensity(Channel channel, uint8_t channelIntensity) {
 	}
 }
 
-void RGB_LED::incrementChannel(Channel channel) {
+void RGBLED::incrementChannel(Channel channel) {
 	switch(channel) {
 		case red:
 			if (redValue_ + increment_ <= maxValue_)
@@ -137,7 +137,7 @@ void RGB_LED::incrementChannel(Channel channel) {
 }
 
 
-void RGB_LED::decrementChannel(Channel channel) {
+void RGBLED::decrementChannel(Channel channel) {
 	switch(channel) {
 		case red:
 			if (redValue_ - increment_ >= minValue_)

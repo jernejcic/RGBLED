@@ -1,9 +1,9 @@
-#ifndef RGB_LED_h
-#define RGB_LED_h
+#ifndef RGBLED_h
+#define RGBLED_h
 
 #include <inttypes.h>
 
-class RGB_LED {
+class RGBLED {
 	public:
 		enum Channel {
 			red = 1,
@@ -25,7 +25,7 @@ class RGB_LED {
 			tealToBlue
 		};
 	
-		RGB_LED(uint8_t redPin, uint8_t greenPin, uint8_t bluePin, uint8_t minValue, uint8_t maxValue, uint8_t increment, uint16_t updateSpeed);
+		RGBLED(uint8_t redPin, uint8_t greenPin, uint8_t bluePin, uint8_t minValue, uint8_t maxValue, uint8_t increment, uint16_t updateSpeed);
 		void process();
 		void setIntensity(Channel channel, uint8_t channelIntensity);
 		void incrementChannel(Channel channel);
