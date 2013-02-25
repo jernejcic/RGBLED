@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "RGLED.h"
+#include "RGBLED.h"
 
 RGBLED::RGBLED(uint8_t redPin, uint8_t greenPin, uint8_t bluePin, uint8_t minValue, uint8_t maxValue, uint8_t increment, uint16_t updateSpeed) 
 	: redPin_(redPin),
